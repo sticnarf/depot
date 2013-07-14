@@ -1,9 +1,6 @@
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
-
 <h1>Your Pragmatic Catalog</h1>
 <p><%= @count_message %></p>
+<p><%= link_to 'Check my cart', @cart %></p>
 
 <% @products.each do |product| %>
   <div class="entry">

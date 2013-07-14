@@ -27,6 +27,9 @@
       </div>
     </div>
     <div id="main">
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
       <%= yield %>
     </div>
   </div>
