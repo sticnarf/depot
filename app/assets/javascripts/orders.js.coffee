@@ -2,7 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
-  if $('body').attr('class') == 'store'
-    $('.store .entry > img').click ->
-      $(this).parent().find(':submit').click()
-    fix_event()
+  if $('body').attr('class') == 'orders'
+    $('#checkout').attr('disabled', 'disabled')
