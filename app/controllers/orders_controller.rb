@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_filter :authorize
   # GET /orders
   # GET /orders.json
   def index
@@ -48,7 +49,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     if current_cart.line_items.empty?
       respond_to do |format|
-        format.html { redirect_to store_url, notice: 'You cannot submit an order with an empty cart' }
+        format.html { redirect_to store_url, notice: I18n.t('.empty_cart') }
     end
       return
     end
@@ -59,7 +60,7 @@ class OrdersController < ApplicationController
         current_cart.destroy
         session[:cart_id] = nil
         OrderNotifier.received(@order).deliver
-        format.html { redirect_to store_url, notice: 'Thank you for your order' }
+        format.html { redirect_to store_url, notice: I18n.t('.thanks') }
         format.json { render json: @order, status: :created, location: @order }
       else
         @cart = current_cart
